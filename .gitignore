@@ -1,0 +1,17 @@
+.DS_Store
+.ipynb_checkpoints
+/raw_tif_data
+/pixel_data
+/tutorials
+/.vscode
+/summaries
+/assets
+api_key.txt
+/_deprecated
+/_modeling
+/notebooks
+/submissions
+__pycache__
+_dev
+/catboost_info
+/csv_data
