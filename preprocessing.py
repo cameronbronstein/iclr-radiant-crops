@@ -1,10 +1,5 @@
 import pandas as pd
-from sklearn.model_selection import cross_val_predict, GridSearchCV, train_test_split, ShuffleSplit
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import make_pipeline
-from sklearn.decomposition import PCA
-from sklearn.metrics import log_loss
-from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
+from sklearn.model_selection import ShuffleSplit
 
 def get_shuffle_splits(
     data,

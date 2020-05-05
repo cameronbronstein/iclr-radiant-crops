@@ -1,12 +1,9 @@
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
-from sklearn.model_selection import cross_val_predict, GridSearchCV, train_test_split, ShuffleSplit
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import make_pipeline
-from sklearn.decomposition import PCA
+import time
+
 from sklearn.metrics import log_loss
-from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
+from sklearn.utils.class_weight import compute_class_weight
 
 def cv_model(
     estimator,
@@ -28,8 +25,7 @@ def cv_model(
     -------
     Field aggregated validation loss
 
-    Prints train, test, cross-val log-loss.
-    
+    Returns training and validation log-loss to standard output.
     """
     y_train = train.loc[:, target_col]  
     X_train = train.drop([target_col, 'field_id'], axis=1)
@@ -44,13 +40,8 @@ def cv_model(
     
     train_score = log_loss(y_train, train_pred)
     test_score = log_loss(y_test, test_pred) 
-    
-    # print('Model evaluation: log-loss')
-    # print('--' * 20)
-    # print(f'Train score: {train_score}')
-    # print(f'Test score: {test_score}')
           
-    return test_score
+    return train_score, test_score
 
 def train_model(
     data,
@@ -83,6 +74,34 @@ def get_class_weights(
             )
 
     return class_weights
+
+def save_predictions(
+    fit_estimator, 
+    zindi, 
+    output_filename=time.asctime()
+):
+    """
+    Function to calculate predictions on the hold-out data
+
+    Params
+    ------
+        - fit_estimator
+        - zindi: the test dataset.
+        - output_fn: string filename to save predictions
+    """
+    preds = fit_estimator.predict_proba(zindi.drop(['field_id', 'label'], axis=1))
+    
+    preds_df = pd.DataFrame(
+        preds,
+        index=zindi['field_id'],
+        columns=range(1,8)
+    )     
+
+    preds_df = preds_df.groupby('field_id').mean()
+
+    preds_df.to_csv(f'./submissions/{output_filename}.csv')
+    
+    return
 
 def get_important_features(
     X,
@@ -135,6 +154,8 @@ def get_important_features(
         return top_features[:n]
     elif type(n_features) == int:
         return top_features[:n]
+
+
 
 
 

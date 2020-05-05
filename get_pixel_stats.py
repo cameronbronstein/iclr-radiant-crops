@@ -3,7 +3,7 @@ This script calculates the cloud-free statistics for each band feature across th
 
 Stats calculated are: min, max, standard deviation, mean, and median.
 
-Pixels on dates where the modeled cloud probability is above 0 are masked, and not incorporated in the statistic.
+Pixels on dates where the derived cloud probability is above 0 are masked, and not incorporated in the statistic.
 """
 
 import pandas as pd

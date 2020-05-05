@@ -8,7 +8,6 @@ import pandas as pd
 import numpy as np
 import tifffile as tiff
 import os
-from tqdm import tqdm
 
 def load_file(fp):
     """

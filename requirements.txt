@@ -1,19 +1,13 @@
-matplotlib==3.1.1
-gdal==2.3.3
-geopandas==0.4.1
-jupyter==1.0.0
-numpy===h1.18.1
-pandas==0.23.4
-psycopg2==2.8.4
-python==3.7.3
-requests==2.22.0
-scikit-learn==0.20.1
-scipy==1.1.0
-seaborn==0.9.0
-shapely==1.6.4
-statsmodels==0.10.1
-theano==1.0.4
-tqdm==4.41.1
-# tensorflow>=2.0
-# skimage==0.16.1
-# tifffile==0.15.1
+pandas=1.0.3=pypi_0
+numpy=1.18.1=py37h7241aed_0
+scikit-learn=0.22.1=py37h27c97d8_0
+scipy=1.4.1=py37h9fa6033_0
+tifffile=2019.7.26.2=py37_0
+jupyter=1.0.0=py37_7
+python=3.7.6=h359304d_2
+matplotlib=3.1.1=py37h54f8f79_0
+requests=2.22.0=py37_1
+pathlib=1.0.1=py37_1
+tqdm=4.41.1=py_0
+seaborn=0.9.0=pyh91ea838_1
+catboost=0.23=pypi_0
