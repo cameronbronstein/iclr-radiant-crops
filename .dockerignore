@@ -1,0 +1,29 @@
+# ignore dotfiles, binaries.
+.git
+.gitignore
+.DS_Store
+.ipynb_checkpoints
+/.vscode
+__pycache__
+
+# ignore unneeded files
+/_deprecated
+/notebooks
+**-submission.csv
+/catboost_info
+/Project\ Summary
+README.md
+api_key.txt
+
+# ignore non-production data
+/tif_data
+/csv_data/test_derived_features.csv
+/csv_data/train_derived_features.csv
+/csv_data/test_pixels.csv
+/csv_data/train_pixels.csv
+
+# ignore non-main python files
+download_data.py
+extract_pixel_data.py
+get_features.py
+get_pixel_stats.py

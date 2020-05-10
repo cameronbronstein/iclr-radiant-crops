@@ -24,8 +24,8 @@ def tiff_to_df(scene_id):
     - Requires data to be stored in directories for each tile (e.g. 00, 01, 02, 03)
     - Requires time series data to be stored in directories for each date.
     """
-    ids_file_path = f"./raw_tif_data/{scene_id}/{scene_id[-1]}_field_id.tif"
-    labels_file_path = f"./raw_tif_data/{scene_id}/{scene_id[-1]}_label.tif"
+    ids_file_path = f"./tif_data/{scene_id}/{scene_id[-1]}_field_id.tif"
+    labels_file_path = f"./tif_data/{scene_id}/{scene_id[-1]}_label.tif"
     
     ids = load_file(ids_file_path)
     labels = load_file(labels_file_path)
@@ -53,7 +53,7 @@ def add_image_data(scene_id, label_df, dates = None, bands=None):
                  'B07', 'B08', 'B8A', 'B09', 'B11', 'B12', 'CLD']
         
     for date in dates:
-        date_path = f"./raw_tif_data/{scene_id}/{date}"
+        date_path = f"./tif_data/{scene_id}/{date}"
         for band in bands:
             band_path = date_path + f"/{scene_id[-1]}_{band}_{date}.tif"
             band_data = load_file(band_path).ravel()

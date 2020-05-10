@@ -1,0 +1,26 @@
+
+Thanks for pulling my ICLR-Crops Docker Image! 
+
+This docker image was made to offer a nice development environment for my solution to the 
+2020 ICLR Workshop Challenge 2: Radiant Earth Computer Vision for Crop Detection from Satellite Imagery
+
+To learn more, visit the competition on Zindi at https://zindi.africa/competitions/iclr-workshop-challenge-2-radiant-earth-computer-vision-for-crop-recognition 
+or see my github repo at https://github.com/cameronbronstein/iclr-crop-detection/.
+
+- To find important features (or use the file provided: impo_features.txt): 
+
+python get_important_features.py --help
+python get_important_features.py ...args... >> important_features.txt 
+
+- To train model with parameters and save submission file under ./submissions/<submission_path>.csv:
+
+python3 main.py --h
+python main.py -bs -fd -md RandomForest -ne 500 -rs 123 -fe ./important_features.txt -sp SampleSubmission
+
+- To write standard output to file:
+
+python3 main.py ...args... >> model_notes.txt
+_________________________________________________________________________________________________________________________________________________________
+
+Maintainer info: Cameron Bronstein | https://github.com/cameronbronstein
+

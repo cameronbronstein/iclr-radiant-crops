@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from tqdm import tqdm
 import time
 
 from sklearn.metrics import log_loss
@@ -38,8 +39,8 @@ def cv_model(
     train_pred = estimator.predict_proba(X_train)
     test_pred = estimator.predict_proba(X_test)
     
-    train_score = log_loss(y_train, train_pred)
-    test_score = log_loss(y_test, test_pred) 
+    train_score = log_loss(y_train, train_pred, labels=y_train.unique())
+    test_score = log_loss(y_test, test_pred, labels=y_train.unique()) 
           
     return train_score, test_score
 
@@ -99,7 +100,7 @@ def save_predictions(
 
     preds_df = preds_df.groupby('field_id').mean()
 
-    preds_df.to_csv(f'./submissions/{output_filename}.csv')
+    preds_df.to_csv(f'./submissions/{output_filename}-submission.csv')
     
     return
 
@@ -138,14 +139,11 @@ def get_important_features(
     
     importance_df = pd.DataFrame(index=X.columns)
 
-    for n in range(n_iterations):
+    for n in tqdm(range(n_iterations), total=n_iterations):
         estimator.fit(X, y)
         importance_df[f'{n}'] = estimator.feature_importances_
 
     importance_df['mean'] = importance_df.iloc[:, :n_iterations].mean(axis=1)
-    # importance_df['std']  = importance_df.iloc[:, :n_iterations].std(axis=1)
-    # importance_df['min'] = importance_df.iloc[:, :n_iterations].min(axis=1)
-    # importance_df['max'] = importance_df.iloc[:, :n_iterations].max(axis=1)
 
     top_features = list(importance_df['mean'].sort_values(ascending=False).index)
 
@@ -154,11 +152,3 @@ def get_important_features(
         return top_features[:n]
     elif type(n_features) == int:
         return top_features[:n]
-
-
-
-
-
-    
-
-    

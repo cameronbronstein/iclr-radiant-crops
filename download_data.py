@@ -41,7 +41,7 @@ def download_imagery(url, output_path, tileid, date):
     return
 
 if __name__ == '__main__':
-    output_path = Path("raw_tif_data/")
+    output_path = Path("tif_data/")
 
     # pull in api key - I store mine as a text file in the repo directory.
     with open('./api_key.txt', 'r') as f:
