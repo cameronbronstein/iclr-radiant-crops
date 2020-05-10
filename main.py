@@ -39,8 +39,8 @@ Loading Data, preparing script parameters
 print(f'Model training with {args}')
 print(f'Currrent time: {time.asctime()}')
 
-data = pd.read_csv('./csv_data/train_stat_features.csv')
-zindi = pd.read_csv('./csv_data/test_stat_features.csv')
+data = pd.read_csv('./csv_data/train_stat_features.csv').drop('scene_id', axis=1)
+zindi = pd.read_csv('./csv_data/test_stat_features.csv').drop('scene_id', axis=1)
 
 """
 Use pre-determined important features
@@ -49,8 +49,7 @@ if args.important_features:
     with open(args.important_features, 'r') as f:
         impo_features = f.read().split('\n')[:-1]
 
-    impo_features.append('field_id')
-    impo_features.append('label')
+    impo_features = ['label', 'field_id'] + impo_features
 
     data = data.loc[:, impo_features]
     zindi = zindi.loc[:, impo_features]
@@ -78,7 +77,7 @@ elif args.model == 'CatBoost':
     model = CatBoostClassifier(
         iterations=args.n_estimators,
         random_seed=args.random_seed,
-        class_weights=class_weights,
+        class_weights=list(class_weights.values()),
         verbose=0
     )
 elif args.model == 'ExtraTrees':
