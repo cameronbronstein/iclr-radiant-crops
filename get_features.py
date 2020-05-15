@@ -130,9 +130,7 @@ def get_CIG(
     green = data[f'{date}_B03']
 
     return (nir / green) - 1
-
-
-
+    
 
 if __name__ == '__main__':
 
