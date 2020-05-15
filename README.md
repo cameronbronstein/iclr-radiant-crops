@@ -23,7 +23,7 @@ A docker image is available for a modeling development environment. The image wa
 You can run the image by downloading [docker](https://docs.docker.com/) and running the following commands (the `-v` flag binds your local directory with the container so you can access any new submissions files you create):
 
 ```
-docker pull cambostein/iclr-radiant-crops:1.0
+docker pull cambostein/iclr-radiant-crops:1.2
 docker run -v "$(pwd)"/submissions:/app/submissions -it cambostein/iclr-radiant-crops:1.0
 ```
 
