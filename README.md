@@ -24,7 +24,7 @@ You can run the image by downloading [docker](https://docs.docker.com/) and runn
 
 ```
 docker pull cambostein/iclr-radiant-crops:1.2
-docker run -v "$(pwd)"/submissions:/app/submissions -it cambostein/iclr-radiant-crops:1.0
+docker run -v "$(pwd)"/submissions:/app/submissions -it cambostein/iclr-radiant-crops:1.2
 ```
 
 Once connected to the running container, you can run steps 6 or 7 with a range of script and modeling parameters.
