@@ -72,7 +72,8 @@ if args.model == 'RandomForest':
         n_estimators=args.n_estimators,
         n_jobs=-1,
         class_weight=class_weights,
-        random_state=args.random_seed
+        random_state=args.random_seed,
+        bootstrap=False
     )
 elif args.model == 'CatBoost':
     model = CatBoostClassifier(
